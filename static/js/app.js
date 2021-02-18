@@ -77,7 +77,6 @@ const gameBoard = (function () {
     };
 
     return {
-        array,
         newBoard,
         markSquare
     };
@@ -85,6 +84,9 @@ const gameBoard = (function () {
 
 //////// GAME CONTROLLER MODULE ////////
 const gameController = (function () {
+
+    // Game status
+    let game_over = false;
 
     // Current player
     let current_player = players.X;
@@ -94,56 +96,58 @@ const gameController = (function () {
         _createEventListeners()
     }
 
-    // Start the main game loop
-    function startGame() {
-        let game_over = false;
-        // Main game loop
-        while (!game_over) {
-            // check for a win
-            // check for a tie
-            // allow next player to play a move
-        }
+    // Resets the game status and clears the board
+    function newGame() {
+        game_over = false;
+        gameBoard.newBoard();
     };
+
+    // Play round loop
+    function _playRound(square, player) {
+        // Mark the selected square with the player's symbol
+        gameBoard.markSquare(square, player.symbol)
+        // Check for a win
+
+        // Check for a tie
+
+        // Flip current player to other player
+    }
 
     // Create event listeners for each square to register clicks based on
     // current player
     function _createEventListeners() {
-        // Game board event listeners
         DOMElements.s00.addEventListener('click', function () {
-            gameBoard.markSquare('s00', current_player.symbol)
+            _playRound('s00', current_player);
         });
         DOMElements.s01.addEventListener('click', function () {
-            gameBoard.markSquare('s01', current_player.symbol)
+            _playRound('s01', current_player);
         });
         DOMElements.s02.addEventListener('click', function () {
-            gameBoard.markSquare('s02', current_player.symbol)
+            _playRound('s02', current_player);
         });
         DOMElements.s10.addEventListener('click', function () {
-            gameBoard.markSquare('s10', current_player.symbol)
+            _playRound('s10', current_player);
         });
         DOMElements.s11.addEventListener('click', function () {
-            gameBoard.markSquare('s11', current_player.symbol)
+            _playRound('s11', current_player);
         });
         DOMElements.s12.addEventListener('click', function () {
-            gameBoard.markSquare('s12', current_player.symbol)
+            _playRound('s12', current_player);
         });
         DOMElements.s20.addEventListener('click', function () {
-            gameBoard.markSquare('s20', current_player.symbol)
+            _playRound('s20', current_player);
         });
         DOMElements.s21.addEventListener('click', function () {
-            gameBoard.markSquare('s21', current_player.symbol)
+            _playRound('s21', current_player);
         });
         DOMElements.s22.addEventListener('click', function () {
-            gameBoard.markSquare('s22', current_player.symbol)
+            _playRound('s22', current_player);
         });
-
-        // Player name event listeners
-        //                                                                 TODO
     };
 
     return {
         initializeGame,
-        startGame
+        newGame
     };
 })();
 
