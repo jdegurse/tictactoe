@@ -20,10 +20,10 @@ const players = (function () {
             symbol,
             name
         }
-    };
+    }
 
-    const X = playerFactory('x', 'Player X')
-    const O = playerFactory('o', 'Player O')
+    const X = playerFactory('x', 'Player X');
+    const O = playerFactory('o', 'Player O');
 
     return {
         X,
@@ -39,7 +39,7 @@ const gameBoard = (function () {
         s00: '', s01: '', s02: '',
         s10: '', s11: '', s12: '',
         s20: '', s21: '', s22: '',
-    }
+    };
 
     // Game board keys as an array
     const keys = Object.keys(array);
@@ -51,7 +51,7 @@ const gameBoard = (function () {
             array[key] = '';
         }
         _renderBoard();
-    };
+    }
 
     // Run through each key in the array and change the corresponding DOM
     // element to match it
@@ -67,19 +67,19 @@ const gameBoard = (function () {
                 DOMElements[key].textContent = '';
             }
         }
-    };
+    }
 
     // Called by an event listener, inputs the passed symbol into the passed
     // array key, and calls _renderBoard() to show the change
     function markSquare(key, symbol) {
         array[key] = `${symbol}`;
-        _renderBoard()
-    };
+        _renderBoard();
+    }
 
     return {
         newBoard,
         markSquare
-    };
+    }
 })();
 
 //////// GAME CONTROLLER MODULE ////////
@@ -99,18 +99,23 @@ const gameController = (function () {
     // Resets the game status and clears the board
     function newGame() {
         game_over = false;
+        current_player = players.X;
         gameBoard.newBoard();
-    };
+    }
 
     // Play round loop
     function _playRound(square, player) {
-        // Mark the selected square with the player's symbol
-        gameBoard.markSquare(square, player.symbol)
-        // Check for a win
+        // Only continue playing the round if game_over is false
+        if (!game_over) {
+            // Mark the selected square with the player's symbol
+            gameBoard.markSquare(square, player.symbol)
+            // Check for a win
 
-        // Check for a tie
+            // Check for a tie
 
-        // Flip current player to other player
+            // Flip current player to other player
+        }
+
     }
 
     // Create event listeners for each square to register clicks based on
