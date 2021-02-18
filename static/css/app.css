@@ -1,13 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 #game {
-    height: 250px;
-    width: 250px;
+    height: 300px;
+    width: 300px;
     margin: 0 auto;
     border: 3px solid black;
 }
 
 #board {
-    height: 150px;
-    width: 150px;
+    height: 252px;
+    width: 252px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -21,7 +23,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3em;
+    font-family: 'Indie Flower', cursive;
+    font-size: 4em;
     user-select: none;
     cursor: pointer;
     background-color: white;

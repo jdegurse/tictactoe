@@ -33,7 +33,6 @@ const players = (function () {
 
 //////// GAME BOARD MODULE ////////
 const gameBoard = (function () {
-
     // Game board as an object
     let array = {
         s00: '', s01: '', s02: '',
@@ -113,7 +112,6 @@ const gameBoard = (function () {
     }
 
     return {
-        array,
         newBoard,
         markSquare,
         checkWin
@@ -122,7 +120,6 @@ const gameBoard = (function () {
 
 //////// GAME CONTROLLER MODULE ////////
 const gameController = (function () {
-
     // Game status
     let game_over = false;
 
@@ -163,10 +160,10 @@ const gameController = (function () {
     // Flip the current_player
     function _flipPlayer() {
         if (current_player === players.X) {
-            current_player = players.O
+            current_player = players.O;
         }
         else {
-            current_player = players.X
+            current_player = players.X;
         }
     }
 
@@ -211,6 +208,5 @@ const gameController = (function () {
 
 
 //////// ON LOAD ////////
-
 // Initialize the game to create event listeners
 gameController.initializeGame();
