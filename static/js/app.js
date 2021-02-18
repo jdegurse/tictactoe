@@ -1,3 +1,21 @@
+//////// PLAYER MODULE ////////
+const players = (function () {
+    function playerFactory(symbol, name) {
+        return {
+            symbol,
+            name
+        }
+    };
+
+    const X = playerFactory('x', 'Player X')
+    const O = playerFactory('o', 'Player O')
+
+    return {
+        X,
+        O
+    }
+})();
+
 //////// DOM ELEMENTS MODULE ////////
 const DOMElements = (function () {
     return {
@@ -18,7 +36,7 @@ const gameBoard = (function () {
 
     // Game board as an object
     let array = {
-        s00: 'x', s01: '', s02: '',
+        s00: '', s01: '', s02: '',
         s10: '', s11: '', s12: '',
         s20: '', s21: '', s22: '',
     }
@@ -69,7 +87,7 @@ const gameBoard = (function () {
 const gameController = (function () {
 
     // Current player
-    let current_player = 'x'
+    let current_player = players.X;
 
     // Initialize game board
     function initializeGame() {
@@ -90,33 +108,37 @@ const gameController = (function () {
     // Create event listeners for each square to register clicks based on
     // current player
     function _createEventListeners() {
+        // Game board event listeners
         DOMElements.s00.addEventListener('click', function () {
-            gameBoard.markSquare('s00', current_player)
+            gameBoard.markSquare('s00', current_player.symbol)
         });
         DOMElements.s01.addEventListener('click', function () {
-            gameBoard.markSquare('s01', current_player)
+            gameBoard.markSquare('s01', current_player.symbol)
         });
         DOMElements.s02.addEventListener('click', function () {
-            gameBoard.markSquare('s02', current_player)
+            gameBoard.markSquare('s02', current_player.symbol)
         });
         DOMElements.s10.addEventListener('click', function () {
-            gameBoard.markSquare('s10', current_player)
+            gameBoard.markSquare('s10', current_player.symbol)
         });
         DOMElements.s11.addEventListener('click', function () {
-            gameBoard.markSquare('s11', current_player)
+            gameBoard.markSquare('s11', current_player.symbol)
         });
         DOMElements.s12.addEventListener('click', function () {
-            gameBoard.markSquare('s12', current_player)
+            gameBoard.markSquare('s12', current_player.symbol)
         });
         DOMElements.s20.addEventListener('click', function () {
-            gameBoard.markSquare('s20', current_player)
+            gameBoard.markSquare('s20', current_player.symbol)
         });
         DOMElements.s21.addEventListener('click', function () {
-            gameBoard.markSquare('s21', current_player)
+            gameBoard.markSquare('s21', current_player.symbol)
         });
         DOMElements.s22.addEventListener('click', function () {
-            gameBoard.markSquare('s22', current_player)
+            gameBoard.markSquare('s22', current_player.symbol)
         });
+
+        // Player name event listeners
+        //                                                                 TODO
     };
 
     return {
@@ -125,17 +147,9 @@ const gameController = (function () {
     };
 })();
 
-//////// PLAYER FACTORY ////////
-function playerFactory(symbol, name) {
-    return {
-        symbol,
-        name
-    }
-};
+
 
 //////// ON LOAD ////////
-playerX = playerFactory('x', 'Player 1');
-playerO = playerFactory('o', 'Player 2');
 
 // Initialize the game to create event listeners
 gameController.initializeGame();
