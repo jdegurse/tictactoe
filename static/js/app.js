@@ -1,3 +1,18 @@
+//////// DOM ELEMENTS MODULE ////////
+const DOMElements = (function () {
+    return {
+        s00: document.getElementById('s00'),
+        s01: document.getElementById('s01'),
+        s02: document.getElementById('s02'),
+        s10: document.getElementById('s10'),
+        s11: document.getElementById('s11'),
+        s12: document.getElementById('s12'),
+        s20: document.getElementById('s20'),
+        s21: document.getElementById('s21'),
+        s22: document.getElementById('s22')
+    }
+})();
+
 //////// PLAYER MODULE ////////
 const players = (function () {
     function playerFactory(symbol, name) {
@@ -13,21 +28,6 @@ const players = (function () {
     return {
         X,
         O
-    }
-})();
-
-//////// DOM ELEMENTS MODULE ////////
-const DOMElements = (function () {
-    return {
-        s00: document.getElementById('s00'),
-        s01: document.getElementById('s01'),
-        s02: document.getElementById('s02'),
-        s10: document.getElementById('s10'),
-        s11: document.getElementById('s11'),
-        s12: document.getElementById('s12'),
-        s20: document.getElementById('s20'),
-        s21: document.getElementById('s21'),
-        s22: document.getElementById('s22')
     }
 })();
 
