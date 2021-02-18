@@ -76,9 +76,39 @@ const gameBoard = (function () {
         _renderBoard();
     }
 
+    // Check if there is a winner, returns boolean
+    function checkWin(symbol) {
+        if (
+            // All win conditions
+            // top horizontal
+            (array.s00 === array.s01 && array.s00 === array.s02 && array.s00 === symbol)
+            // middle horizontal
+            || (array.s10 === array.s11 && array.s10 === array.s12 && array.s10 === symbol)
+            // bottom horizontal
+            || (array.s20 === array.s21 && array.s20 === array.s22 && array.s20 === symbol)
+            // left vertical
+            || (array.s00 === array.s10 && array.s00 === array.s20 && array.s00 === symbol)
+            // middle vertical
+            || (array.s01 === array.s11 && array.s01 === array.s21 && array.s01 === symbol)
+            // right vertical
+            || (array.s02 === array.s12 && array.s02 === array.s22 && array.s02 === symbol)
+            // top left to bottom right
+            || (array.s00 === array.s11 && array.s00 === array.s22 && array.s00 === symbol)
+            // bottom left to top right
+            || (array.s20 === array.s11 && array.s20 === array.s02 && array.s20 === symbol)
+        ) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     return {
+        array,
         newBoard,
-        markSquare
+        markSquare,
+        checkWin
     }
 })();
 
@@ -110,7 +140,7 @@ const gameController = (function () {
             // Mark the selected square with the player's symbol
             gameBoard.markSquare(square, player.symbol)
             // Check for a win
-
+            gameBoard.checkWin
             // Check for a tie
 
             // Flip current player to other player
