@@ -116,6 +116,8 @@ const gameBoard = (function () {
         }
     }
 
+    // Determine if there is a tie by checking whether array includes an empty
+    // square
     function checkTie() {
         return !Object.values(array).includes('')
     }
