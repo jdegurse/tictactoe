@@ -75,6 +75,11 @@ const gameBoard = (function () {
         _renderBoard();
     }
 
+    // Check if the selected square is empty
+    function checkSquareEmpty(key) {
+        return array[key] === '';
+    }
+
     // Check if there is a winner, returns boolean
     function checkWin(symbol) {
         if (
@@ -114,6 +119,7 @@ const gameBoard = (function () {
     return {
         newBoard,
         markSquare,
+        checkSquareEmpty,
         checkWin
     }
 })();
@@ -142,19 +148,21 @@ const gameController = (function () {
     function _playRound(square, player) {
         // Only continue playing the round if game_over is false
         if (!game_over) {
-            // Mark the selected square with the player's symbol
-            gameBoard.markSquare(square, player.symbol);
-            // Check for a win
-            if (gameBoard.checkWin(player.symbol)) {
-                console.log(`${player.name} wins!`)
-                game_over = true;
+            // Check that the square is empty before marking it
+            if (gameBoard.checkSquareEmpty(square)) {
+                // Mark the selected square with the player's symbol
+                gameBoard.markSquare(square, player.symbol);
+                // Check for a win
+                if (gameBoard.checkWin(player.symbol)) {
+                    console.log(`${player.name} wins!`)
+                    game_over = true;
+                }
+                // Check for a tie
+
+                // Flip current player to other player
+                _flipPlayer();
             }
-            // Check for a tie
-
-            // Flip current player to other player
-            _flipPlayer();
         }
-
     }
 
     // Flip the current_player
