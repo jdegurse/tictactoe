@@ -1,6 +1,8 @@
 //////// DOM ELEMENTS MODULE ////////
 const DOMElements = (function () {
     return {
+        playerX: document.getElementById('playerX'),
+        playerO: document.getElementById('playerO'),
         s00: document.getElementById('s00'),
         s01: document.getElementById('s01'),
         s02: document.getElementById('s02'),
