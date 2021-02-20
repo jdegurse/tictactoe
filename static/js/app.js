@@ -116,11 +116,16 @@ const gameBoard = (function () {
         }
     }
 
+    function checkTie() {
+        return !Object.values(array).includes('')
+    }
+
     return {
         newBoard,
         markSquare,
         checkSquareEmpty,
-        checkWin
+        checkWin,
+        checkTie
     }
 })();
 
@@ -154,11 +159,14 @@ const gameController = (function () {
                 gameBoard.markSquare(square, player.symbol);
                 // Check for a win
                 if (gameBoard.checkWin(player.symbol)) {
-                    console.log(`${player.name} wins!`)
+                    console.log(`${player.name} wins!`);
                     game_over = true;
                 }
                 // Check for a tie
-
+                if (gameBoard.checkTie()) {
+                    console.log('Tie!');
+                    game_over = true;
+                }
                 // Flip current player to other player
                 _flipPlayer();
             }
