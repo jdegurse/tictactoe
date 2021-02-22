@@ -213,11 +213,13 @@ const gameController = (function () {
                 if (gameBoard.checkWin(player.symbol)) {
                     console.log(`${player.name} wins!`);
                     game_over = true;
+                    return;
                 }
                 // Check for a tie
                 if (gameBoard.checkTie()) {
                     console.log('Tie!');
                     game_over = true;
+                    return;
                 }
                 // Flip current player to other player
                 _flipPlayer();
