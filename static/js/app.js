@@ -1,8 +1,6 @@
 //////// DOM ELEMENTS MODULE ////////
 const DOMElements = (function () {
     return {
-        playerX: document.getElementById('playerX'),
-        playerO: document.getElementById('playerO'),
         s00: document.getElementById('s00'),
         s01: document.getElementById('s01'),
         s02: document.getElementById('s02'),
@@ -17,6 +15,17 @@ const DOMElements = (function () {
 
 //////// PLAYER MODULE ////////
 const players = (function () {
+    // DOM Elements
+    const playerX = document.getElementById('playerX');
+    const playerO = document.getElementById('playerO');
+
+    // Event Listeners
+    playerX.addEventListener('keyup', _blurOnEnter);
+    playerO.addEventListener('keyup', _blurOnEnter);
+    playerX.addEventListener('blur', _changeName);
+    playerO.addEventListener('blur', _changeName);
+
+    // Creates a player
     function playerFactory(symbol, name) {
         return {
             symbol,
@@ -24,8 +33,21 @@ const players = (function () {
         }
     }
 
-    const X = playerFactory('x', 'Player X');
-    const O = playerFactory('o', 'Player O');
+    // Blur the player name input box when enter is pressed
+    function _blurOnEnter(e) {
+        if (e.which === 13 || e.keyCode === 13) {
+            this.blur()
+        }
+    }
+
+    // Change the name of a player
+    function _changeName() {
+        X.name = this.value;
+    }
+
+    // Create player X and player O
+    const X = playerFactory('x', playerX.value);
+    const O = playerFactory('o', playerO.value);
 
     return {
         X,
