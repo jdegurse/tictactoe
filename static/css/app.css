@@ -24,6 +24,10 @@ input.player-name {
     background-color: lightgrey;
 }
 
+input.player-name.is-turn {
+    background-color: cadetblue;
+}
+
 #board {
     height: 261px;
     width: 261px;

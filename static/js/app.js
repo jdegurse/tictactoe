@@ -198,6 +198,8 @@ const gameController = (function () {
     function newGame() {
         game_over = false;
         current_player = players.X;
+        DOMElements.playerX.classList.add('is-turn');
+        DOMElements.playerO.classList.remove('is-turn');
         gameBoard.newBoard();
     }
 
@@ -235,6 +237,8 @@ const gameController = (function () {
         else {
             current_player = players.X;
         }
+        DOMElements.playerX.classList.toggle('is-turn');
+        DOMElements.playerO.classList.toggle('is-turn');
     }
 
     return {
