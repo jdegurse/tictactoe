@@ -1,6 +1,8 @@
 //////// DOM ELEMENTS MODULE ////////
 const DOMElements = (function () {
     return {
+        playerX: document.getElementById('playerX'),
+        playerO: document.getElementById('playerO'),
         s00: document.getElementById('s00'),
         s01: document.getElementById('s01'),
         s02: document.getElementById('s02'),
@@ -15,15 +17,15 @@ const DOMElements = (function () {
 
 //////// PLAYER MODULE ////////
 const players = (function () {
-    // DOM Elements
-    const playerX = document.getElementById('playerX');
-    const playerO = document.getElementById('playerO');
-
     // Event Listeners
-    playerX.addEventListener('keyup', _blurOnEnter);
-    playerO.addEventListener('keyup', _blurOnEnter);
-    playerX.addEventListener('blur', _changeName);
-    playerO.addEventListener('blur', _changeName);
+    DOMElements.playerX.addEventListener('keyup', _blurOnEnter);
+    DOMElements.playerO.addEventListener('keyup', _blurOnEnter);
+    DOMElements.playerX.addEventListener('blur', function () {
+        _changeName(X, this);
+    });
+    DOMElements.playerO.addEventListener('blur', function () {
+        _changeName(O, this);
+    });
 
     // Creates a player
     function playerFactory(symbol, name) {
@@ -41,8 +43,8 @@ const players = (function () {
     }
 
     // Change the name of a player
-    function _changeName() {
-        X.name = this.value;
+    function _changeName(player, element) {
+        player.name = element.value;
     }
 
     // Create player X and player O
@@ -163,10 +165,34 @@ const gameController = (function () {
     // Current player
     let current_player = players.X;
 
-    // Initialize game board
-    function initializeGame() {
-        _createEventListeners()
-    }
+    // Event Listeners
+    DOMElements.s00.addEventListener('click', function () {
+        _playRound('s00', current_player);
+    });
+    DOMElements.s01.addEventListener('click', function () {
+        _playRound('s01', current_player);
+    });
+    DOMElements.s02.addEventListener('click', function () {
+        _playRound('s02', current_player);
+    });
+    DOMElements.s10.addEventListener('click', function () {
+        _playRound('s10', current_player);
+    });
+    DOMElements.s11.addEventListener('click', function () {
+        _playRound('s11', current_player);
+    });
+    DOMElements.s12.addEventListener('click', function () {
+        _playRound('s12', current_player);
+    });
+    DOMElements.s20.addEventListener('click', function () {
+        _playRound('s20', current_player);
+    });
+    DOMElements.s21.addEventListener('click', function () {
+        _playRound('s21', current_player);
+    });
+    DOMElements.s22.addEventListener('click', function () {
+        _playRound('s22', current_player);
+    });
 
     // Resets the game status and clears the board
     function newGame() {
@@ -209,40 +235,7 @@ const gameController = (function () {
         }
     }
 
-    // Create event listeners for each square to register clicks based on
-    // current player
-    function _createEventListeners() {
-        DOMElements.s00.addEventListener('click', function () {
-            _playRound('s00', current_player);
-        });
-        DOMElements.s01.addEventListener('click', function () {
-            _playRound('s01', current_player);
-        });
-        DOMElements.s02.addEventListener('click', function () {
-            _playRound('s02', current_player);
-        });
-        DOMElements.s10.addEventListener('click', function () {
-            _playRound('s10', current_player);
-        });
-        DOMElements.s11.addEventListener('click', function () {
-            _playRound('s11', current_player);
-        });
-        DOMElements.s12.addEventListener('click', function () {
-            _playRound('s12', current_player);
-        });
-        DOMElements.s20.addEventListener('click', function () {
-            _playRound('s20', current_player);
-        });
-        DOMElements.s21.addEventListener('click', function () {
-            _playRound('s21', current_player);
-        });
-        DOMElements.s22.addEventListener('click', function () {
-            _playRound('s22', current_player);
-        });
-    };
-
     return {
-        initializeGame,
         newGame
     };
 })();
@@ -250,5 +243,3 @@ const gameController = (function () {
 
 
 //////// ON LOAD ////////
-// Initialize the game to create event listeners
-gameController.initializeGame();
