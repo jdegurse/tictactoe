@@ -3,6 +3,8 @@ const DOMElements = (function () {
     return {
         playerX: document.getElementById('playerX'),
         playerO: document.getElementById('playerO'),
+        warn_tie: document.getElementById('warn-tie'),
+        warn_win: document.getElementById('warn-win'),
         s00: document.getElementById('s00'),
         s01: document.getElementById('s01'),
         s02: document.getElementById('s02'),
@@ -64,6 +66,32 @@ const players = (function () {
     return {
         X,
         O
+    }
+})();
+
+//////// WARNING BOX MODULE ////////
+const warningBox = (function () {
+    // Hide all warning boxes
+    function hideWarns() {
+        DOMElements.warn_win.classList.add('invisible');
+        DOMElements.warn_tie.classList.add('invisible');
+    }
+
+    // Display win warning box
+    function displayWin(winner) {
+        // winner is the player's name
+        DOMElements.warn_win.textContent = `${winner} wins!`
+        DOMElements.warn_win.classList.remove('invisible');
+    }
+
+    // Display tie warning box
+    function displayTie() {
+        DOMElements.warn_tie.classList.remove('invisible');
+    }
+    return {
+        hideWarns,
+        displayWin,
+        displayTie
     }
 })();
 
@@ -213,6 +241,7 @@ const gameController = (function () {
         DOMElements.playerO.classList.remove('is-turn');
         DOMElements.playerX.classList.remove('is-winner');
         DOMElements.playerO.classList.remove('is-winner');
+        warningBox.hideWarns();
         gameBoard.newBoard();
     }
 
@@ -227,13 +256,15 @@ const gameController = (function () {
                 // Check for a win
                 if (gameBoard.checkWin(player.symbol)) {
                     console.log(`${player.name} wins!`);
-                    player.classList.add('is-winner')
+                    warningBox.displayWin(player.name);
+                    player.classList.add('is-winner');
                     game_over = true;
                     return;
                 }
                 // Check for a tie
                 if (gameBoard.checkTie()) {
                     console.log('Tie!');
+                    warningBox.displayTie();
                     game_over = true;
                     return;
                 }
