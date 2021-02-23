@@ -8,6 +8,17 @@
     box-shadow: 0 0 15px -7px black;
 }
 
+#title-bar {
+    margin: 10px auto;
+    font-family: 'Indie Flower', cursive;
+    font-size: 60px;
+    text-align: center;
+}
+
+#mini-vs {
+    font-size: 36px;
+}
+
 #players {
     margin: 10px auto;
     display: flex;
