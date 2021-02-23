@@ -3,10 +3,13 @@
 #game {
     width: 300px;
     margin: 0 auto;
-    border: 3px solid black;
+    border: 3px solid white;
+    border-radius: 10px;
+    box-shadow: 0 0 15px -7px black;
 }
 
 #players {
+    margin: 10px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -36,18 +39,17 @@ input.player-name:focus {
 }
 
 #warning-box {
+    margin: 20px auto;
     height: 25px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: lightskyblue;
 }
 
 p.warning {
     width: 100%;
     margin: 0 15px;
     padding: 5px 0;
-    border: 0;
     outline: 0;
     font-size: 15px;
     text-align: center;
@@ -57,7 +59,7 @@ p.warning {
 #board {
     height: 261px;
     width: 261px;
-    margin: 0 auto;
+    margin: 10px auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -67,7 +69,23 @@ p.warning {
     background-color: black;
 }
 
+.square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 4em;
+    user-select: none;
+    cursor: pointer;
+    background-color: white;
+}
+
+.square.win-line {
+    background-color: forestgreen;
+}
+
 #new-game-container {
+    margin: 10px auto;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -91,21 +109,6 @@ button#new-game:hover {
 
 button#new-game:active {
     box-shadow: inset 0 0 7px -3px black;
-}
-
-.square {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Indie Flower', cursive;
-    font-size: 4em;
-    user-select: none;
-    cursor: pointer;
-    background-color: white;
-}
-
-.square.win-line {
-    background-color: forestgreen;
 }
 
 .invisible {
