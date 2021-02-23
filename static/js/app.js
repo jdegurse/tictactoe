@@ -112,6 +112,7 @@ const gameBoard = (function () {
     function newBoard() {
         for (const key of keys) {
             array[key] = '';
+            DOMElements[key].classList.remove('win-line');
         }
         _renderBoard();
     }
@@ -144,37 +145,73 @@ const gameBoard = (function () {
         return array[key] === '';
     }
 
-    // Check if there is a winner, returns boolean
+    // Check if there is a winner, returns boolean and highlights the win line
     function checkWin(symbol) {
-        if (
-            // All win conditions
-            // top horizontal
-            (array.s00 === array.s01 && array.s00 === array.s02
-                && array.s00 === symbol) ||
-            // middle horizontal
-            (array.s10 === array.s11 && array.s10 === array.s12
-                && array.s10 === symbol) ||
-            // bottom horizontal
-            (array.s20 === array.s21 && array.s20 === array.s22
-                && array.s20 === symbol) ||
-            // left vertical
-            (array.s00 === array.s10 && array.s00 === array.s20
-                && array.s00 === symbol) ||
-            // middle vertical
-            (array.s01 === array.s11 && array.s01 === array.s21
-                && array.s01 === symbol) ||
-            // right vertical
-            (array.s02 === array.s12 && array.s02 === array.s22
-                && array.s02 === symbol) ||
-            // top left to bottom right
-            (array.s00 === array.s11 && array.s00 === array.s22
-                && array.s00 === symbol) ||
-            // bottom left to top right
-            (array.s20 === array.s11 && array.s20 === array.s02
-                && array.s20 === symbol)
-        ) {
+        // top horizontal
+        if (array.s00 === array.s01 && array.s00 === array.s02
+            && array.s00 === symbol) {
+            DOMElements.s00.classList.add('win-line');
+            DOMElements.s01.classList.add('win-line');
+            DOMElements.s02.classList.add('win-line');
             return true;
         }
+        // middle horizontal
+        else if (array.s10 === array.s11 && array.s10 === array.s12
+            && array.s10 === symbol) {
+            DOMElements.s10.classList.add('win-line');
+            DOMElements.s11.classList.add('win-line');
+            DOMElements.s12.classList.add('win-line');
+            return true;
+        }
+        // bottom horizontal
+        else if (array.s20 === array.s21 && array.s20 === array.s22
+            && array.s20 === symbol) {
+            DOMElements.s20.classList.add('win-line');
+            DOMElements.s21.classList.add('win-line');
+            DOMElements.s22.classList.add('win-line');
+            return true;
+        }
+        // left vertical
+        else if (array.s00 === array.s10 && array.s00 === array.s20
+            && array.s00 === symbol) {
+            DOMElements.s00.classList.add('win-line');
+            DOMElements.s10.classList.add('win-line');
+            DOMElements.s20.classList.add('win-line');
+            return true;
+        }
+        // middle vertical
+        else if (array.s01 === array.s11 && array.s01 === array.s21
+            && array.s01 === symbol) {
+            DOMElements.s01.classList.add('win-line');
+            DOMElements.s11.classList.add('win-line');
+            DOMElements.s21.classList.add('win-line');
+            return true;
+        }
+        // right vertical
+        else if (array.s02 === array.s12 && array.s02 === array.s22
+            && array.s02 === symbol) {
+            DOMElements.s02.classList.add('win-line');
+            DOMElements.s12.classList.add('win-line');
+            DOMElements.s22.classList.add('win-line');
+            return true;
+        }
+        // top left to bottom right
+        else if (array.s00 === array.s11 && array.s00 === array.s22
+            && array.s00 === symbol) {
+            DOMElements.s00.classList.add('win-line');
+            DOMElements.s11.classList.add('win-line');
+            DOMElements.s22.classList.add('win-line');
+            return true;
+        }
+        // bottom left to top right
+        else if (array.s20 === array.s11 && array.s20 === array.s02
+            && array.s20 === symbol) {
+            DOMElements.s20.classList.add('win-line');
+            DOMElements.s11.classList.add('win-line');
+            DOMElements.s02.classList.add('win-line');
+            return true;
+        }
+        // no win
         else {
             return false;
         }

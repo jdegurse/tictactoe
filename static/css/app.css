@@ -101,8 +101,11 @@ button#new-game:active {
     font-size: 4em;
     user-select: none;
     cursor: pointer;
-    border: 1px solid white;
     background-color: white;
+}
+
+.square.win-line {
+    background-color: forestgreen;
 }
 
 .invisible {
