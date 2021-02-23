@@ -11,7 +11,8 @@ const DOMElements = (function () {
         s12: document.getElementById('s12'),
         s20: document.getElementById('s20'),
         s21: document.getElementById('s21'),
-        s22: document.getElementById('s22')
+        s22: document.getElementById('s22'),
+        new_game: document.getElementById('new-game')
     }
 })();
 
@@ -28,10 +29,11 @@ const players = (function () {
     });
 
     // Creates a player
-    function playerFactory(symbol, name) {
+    function playerFactory(symbol, name, classList) {
         return {
             symbol,
-            name
+            name,
+            classList
         }
     }
 
@@ -48,8 +50,16 @@ const players = (function () {
     }
 
     // Create player X and player O
-    const X = playerFactory('x', playerX.value);
-    const O = playerFactory('o', playerO.value);
+    const X = playerFactory(
+        'x',
+        DOMElements.playerX.value,
+        DOMElements.playerX.classList
+    );
+    const O = playerFactory(
+        'o',
+        DOMElements.playerO.value,
+        DOMElements.playerO.classList
+    );
 
     return {
         X,
@@ -193,13 +203,16 @@ const gameController = (function () {
     DOMElements.s22.addEventListener('click', function () {
         _playRound('s22', current_player);
     });
+    DOMElements.new_game.addEventListener('click', _newGame)
 
     // Resets the game status and clears the board
-    function newGame() {
+    function _newGame() {
         game_over = false;
         current_player = players.X;
         DOMElements.playerX.classList.add('is-turn');
         DOMElements.playerO.classList.remove('is-turn');
+        DOMElements.playerX.classList.remove('is-winner');
+        DOMElements.playerO.classList.remove('is-winner');
         gameBoard.newBoard();
     }
 
@@ -214,6 +227,7 @@ const gameController = (function () {
                 // Check for a win
                 if (gameBoard.checkWin(player.symbol)) {
                     console.log(`${player.name} wins!`);
+                    player.classList.add('is-winner')
                     game_over = true;
                     return;
                 }
@@ -242,7 +256,7 @@ const gameController = (function () {
     }
 
     return {
-        newGame
+        // No public functions
     };
 })();
 

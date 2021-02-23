@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 #game {
-    height: 500px;
     width: 300px;
     margin: 0 auto;
     border: 3px solid black;
@@ -28,6 +27,14 @@ input.player-name.is-turn {
     background-color: cadetblue;
 }
 
+input.player-name.is-winner {
+    background-color: forestgreen;
+}
+
+input.player-name:focus {
+    box-shadow: inset 0 0 7px -3px black;
+}
+
 #board {
     height: 261px;
     width: 261px;
@@ -39,6 +46,32 @@ input.player-name.is-turn {
     /* remove the border to create standard hash board */
     border: 0px solid black;
     background-color: black;
+}
+
+#new-game-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+button#new-game {
+    padding: 0 10px;
+    margin: 0;
+    height: 35px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.5em;
+    text-align: center;
+    border: 0;
+    outline: 0;
+    background-color: lightgrey;
+}
+
+button#new-game:hover {
+    background-color: seagreen;
+}
+
+button#new-game:active {
+    box-shadow: inset 0 0 7px -3px black;
 }
 
 .square {
