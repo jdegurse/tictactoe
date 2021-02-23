@@ -3,8 +3,8 @@ const DOMElements = (function () {
     return {
         playerX: document.getElementById('playerX'),
         playerO: document.getElementById('playerO'),
-        warn_tie: document.getElementById('warn-tie'),
         warn_win: document.getElementById('warn-win'),
+        warn_tie: document.getElementById('warn-tie'),
         s00: document.getElementById('s00'),
         s01: document.getElementById('s01'),
         s02: document.getElementById('s02'),
@@ -71,7 +71,7 @@ const players = (function () {
 
 //////// WARNING BOX MODULE ////////
 const warningBox = (function () {
-    // Hide all warning boxes
+    // Hide all warnings
     function hideWarns() {
         DOMElements.warn_win.classList.add('invisible');
         DOMElements.warn_tie.classList.add('invisible');
