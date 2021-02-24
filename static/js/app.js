@@ -403,7 +403,3 @@ const gameController = (function () {
         getCurrentPlayer
     };
 })();
-
-
-
-//////// ON LOAD ////////
