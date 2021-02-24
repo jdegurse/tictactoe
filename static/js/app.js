@@ -107,6 +107,62 @@ const gameBoard = (function () {
     // Game board keys as an array
     const keys = Object.keys(array);
 
+    // Event Listeners
+    DOMElements.s00.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s00', gameController.getCurrentPlayer());
+    })
+    DOMElements.s00.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s00');
+    })
+    DOMElements.s01.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s01', gameController.getCurrentPlayer());
+    })
+    DOMElements.s01.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s01');
+    })
+    DOMElements.s02.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s02', gameController.getCurrentPlayer());
+    })
+    DOMElements.s02.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s02');
+    })
+    DOMElements.s10.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s10', gameController.getCurrentPlayer());
+    })
+    DOMElements.s10.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s10');
+    })
+    DOMElements.s11.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s11', gameController.getCurrentPlayer());
+    })
+    DOMElements.s11.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s11');
+    })
+    DOMElements.s12.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s12', gameController.getCurrentPlayer());
+    })
+    DOMElements.s12.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s12');
+    })
+    DOMElements.s20.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s20', gameController.getCurrentPlayer());
+    })
+    DOMElements.s20.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s20');
+    })
+    DOMElements.s21.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s21', gameController.getCurrentPlayer());
+    })
+    DOMElements.s21.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s21');
+    })
+    DOMElements.s22.addEventListener('mouseover', function () {
+        _mouseoverSymbol('s22', gameController.getCurrentPlayer());
+    })
+    DOMElements.s22.addEventListener('mouseleave', function () {
+        _mouseoutSymbol('s22');
+    })
+
     // Reset gameBoard array values to empty strings, then run _renderBoard to
     // clear the textContent of the board
     function newBoard() {
@@ -137,6 +193,7 @@ const gameBoard = (function () {
     // array key, and calls _renderBoard() to show the change
     function markSquare(key, symbol) {
         array[key] = `${symbol}`;
+        DOMElements[key].style.color = 'black';
         _renderBoard();
     }
 
@@ -221,6 +278,21 @@ const gameBoard = (function () {
     // square
     function checkTie() {
         return !Object.values(array).includes('')
+    }
+
+    function _mouseoverSymbol(square, current_player) {
+        if (array[square] === '') {
+            DOMElements[square].textContent =
+                current_player.symbol.toUpperCase();
+            DOMElements[square].style.color = 'rgba(0, 0, 0, 0.5)';
+        }
+    }
+
+    function _mouseoutSymbol(square) {
+        if (array[square] === '') {
+            DOMElements[square].textContent = '';
+            DOMElements[square].style.color = 'black';
+        }
     }
 
     return {
@@ -323,8 +395,12 @@ const gameController = (function () {
         DOMElements.playerO.classList.toggle('is-turn');
     }
 
+    function getCurrentPlayer() {
+        return current_player;
+    }
+
     return {
-        // No public functions
+        getCurrentPlayer
     };
 })();
 
