@@ -87,6 +87,7 @@ p.warning {
     font-size: 4em;
     color: black;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
     cursor: pointer;
     background-color: white;
 }
