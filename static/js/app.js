@@ -281,7 +281,7 @@ const gameBoard = (function () {
     }
 
     function _mouseoverSymbol(square, current_player) {
-        if (array[square] === '') {
+        if (array[square] === '' && !gameController.getGameOver()) {
             DOMElements[square].textContent =
                 current_player.symbol.toUpperCase();
             DOMElements[square].style.color = 'rgba(0, 0, 0, 0.5)';
@@ -399,7 +399,12 @@ const gameController = (function () {
         return current_player;
     }
 
+    function getGameOver() {
+        return game_over;
+    }
+
     return {
-        getCurrentPlayer
+        getCurrentPlayer,
+        getGameOver
     };
 })();
